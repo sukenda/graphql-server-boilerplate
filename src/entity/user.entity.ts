@@ -1,5 +1,7 @@
-import {Entity, Column, BaseEntity, PrimaryGeneratedColumn, CreateDateColumn} from "typeorm";
+import {Entity, Column, BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, BeforeInsert} from "typeorm";
 import {Field, ID, ObjectType} from "type-graphql";
+import {v4 as uuid} from 'uuid';
+import {hashSync} from 'bcrypt';
 
 @Entity()
 @ObjectType()
@@ -9,7 +11,8 @@ export class User extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column("varchar", {length: 255})
+    @Field(() => String)
+    @Column("varchar", {length: 255, unique: true})
     email: string;
 
     @Column("text")
@@ -22,5 +25,14 @@ export class User extends BaseEntity {
     @Field(() => String)
     @Column({type: 'varchar', length: 300, nullable: true})
     createdBy: string;
+
+    @BeforeInsert()
+    before() {
+        if (!this.createdBy) {
+            this.createdBy = uuid()
+        }
+
+        this.password = hashSync(this.password, 12);
+    }
 
 }

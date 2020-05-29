@@ -8,4 +8,7 @@ export class CreateBookInput {
 
     @Field()
     author: string;
+
+    @Field()
+    isPublished: boolean;
 }
