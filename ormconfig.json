@@ -1,0 +1,24 @@
+{
+   "type": "postgres",
+   "host": "localhost",
+   "port": 5432,
+   "username": "sukenda",
+   "password": "sukenda",
+   "database": "graphql-server-boilerplate",
+   "schema": "server-boilerplate",
+   "synchronize": false,
+   "logging": ["query", "error"],
+   "migrationsRun": false,
+   "cache": false,
+   "entities": [
+      "**/*.entity{.ts,.js}"
+   ],
+   "migrationsTableName": "migration",
+   "migrations": [
+      "src/migration/*.ts"
+   ],
+   "cli": {
+      "migrationsDir": "src/migration"
+   },
+   "ssl": false
+}
