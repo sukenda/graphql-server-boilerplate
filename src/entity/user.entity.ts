@@ -26,10 +26,25 @@ export class User extends BaseEntity {
     @Column({type: 'varchar', length: 300, nullable: true})
     createdBy: string;
 
+    @Field(() => [String])
+    @Column('varchar', {array: true})
+    roles: string[];
+
+    @Column("text")
+    @Field(() => String)
+    refreshToken: string
+
+    @Field(() => String)
+    accessToken: string
+
     @BeforeInsert()
     before() {
         if (!this.createdBy) {
             this.createdBy = uuid()
+        }
+
+        if (!this.roles) {
+            this.roles = new Array("GUEST")
         }
 
         this.password = hashSync(this.password, 12);

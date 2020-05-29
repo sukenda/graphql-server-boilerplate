@@ -2,7 +2,7 @@ import {InputType, Field} from "type-graphql";
 import {IsEmail} from "class-validator";
 
 @InputType()
-export class CreateUserInput {
+export class UserInput {
 
     @Field()
     @IsEmail()
@@ -10,5 +10,8 @@ export class CreateUserInput {
 
     @Field()
     password: string;
+
+    @Field(type => [String], {nullable: true})
+    roles?: string[];
 
 }
