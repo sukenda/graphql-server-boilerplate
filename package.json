@@ -18,7 +18,7 @@
     "@types/uuid": "^8.0.0",
     "apollo-server-express": "^2.14.2",
     "bcrypt": "^5.0.0",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "express-jwt": "^6.0.0",
     "graphql": "^15.0.0",
     "jsonwebtoken": "^8.5.1",
